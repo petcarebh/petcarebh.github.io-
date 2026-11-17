@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Pet Care</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --navy: #173B60;
+    --blue: #82BDE5;
+    --light: #EAF6FD;
+    --pale: #F6FAFD;
+    --white: #FFFFFF;
+    --gray: #718397;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy);
+    background: var(--white);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* HEADER - SAME AS HOME */
+
+header {
+    width: 100%;
+    background: rgba(255,255,255,0.96);
+    padding: 17px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #EDF3F7;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 27px;
+    font-weight: 900;
+}
+
+.logo img {
+    width: 49px;
+    height: 49px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.logo span {
+    color: var(--blue);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+nav a {
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--blue);
+}
+
+.nav-cta {
+    background: var(--navy);
+    color: white;
+    padding: 12px 23px;
+    border-radius: 30px;
+}
+
+.nav-cta:hover {
+    background: #315F89;
+    color: white;
+}
+
+/* PAGE INTRO */
+
+.about-hero {
+    padding: 90px 8% 70px;
+    background: var(--pale);
+}
+
+.hero-content {
+    max-width: 850px;
+    margin-bottom: 45px;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: #5A9AC9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.about-hero h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.08;
+    font-weight: 900;
+    max-width: 800px;
+    margin-bottom: 22px;
+}
+
+.about-hero h1 span {
+    color: #82BDE5;
+}
+
+.hero-description {
+    max-width: 650px;
+    color: var(--gray);
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.hero-image {
+    width: 100%;
+    height: 390px;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* OUR STORY */
+
+.story-section {
+    padding: 110px 8%;
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 90px;
+    align-items: start;
+}
+
+.story-title h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 43px;
+    line-height: 1.2;
+    font-weight: 900;
+}
+
+.story-content p {
+    color: var(--gray);
+    font-size: 16px;
+    line-height: 2;
+    margin-bottom: 20px;
+}
+
+.story-highlight {
+    border-left: 4px solid var(--blue);
+    padding: 5px 0 5px 22px;
+    margin-top: 28px;
+    color: var(--navy);
+    font-size: 19px;
+    line-height: 1.7;
+    font-weight: 700;
+}
+
+/* MISSION AND VISION */
+
+.mission-section {
+    background: var(--navy);
+    color: white;
+    padding: 90px 8%;
+}
+
+.mission-heading {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.mission-heading .eyebrow {
+    color: var(--blue);
+}
+
+.mission-heading h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    max-width: 1050px;
+    margin: auto;
+}
+
+.mission-item {
+    padding: 15px 0;
+}
+
+.mission-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+    background: rgba(130, 189, 229, 0.17);
+    color: var(--blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 27px;
+    margin-bottom: 25px;
+}
+
+.mission-item h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+.mission-item p {
+    color: #D1E0EC;
+    line-height: 1.9;
+    font-size: 15px;
+}
+
+/* OBJECTIVES */
+
+.objectives-section {
+    padding: 110px 8%;
+    background: white;
+}
+
+.objectives-header {
+    max-width: 650px;
+    margin-bottom: 55px;
+}
+
+.objectives-header h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 43px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.objectives-header p {
+    color: var(--gray);
+    line-height: 1.8;
+}
+
+.objective-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 25px;
+    padding: 30px 0;
+    border-top: 1px solid #DFEAF1;
+    align-items: start;
+}
+
+.objective-number {
+    font-family: 'Nunito', sans-serif;
+    font-size: 35px;
+    font-weight: 900;
+    color: var(--blue);
+}
+
+.objective-row h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.objective-row p {
+    color: var(--gray);
+    line-height: 1.9;
+    max-width: 800px;
+}
+
+/* TEAM */
+
+.team-section {
+    padding: 90px 8%;
+    background: var(--pale);
+}
+
+.team-heading {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 45px;
+}
+
+.team-heading .eyebrow {
+    color: #5A9AC9;
+}
+
+.team-heading h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+    margin: 14px 0;
+}
+
+.team-heading p {
+    color: var(--gray);
+    line-height: 1.8;
+}
+
+.team-list {
+    max-width: 850px;
+    margin: auto;
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 25px 30px;
+    border-bottom: 1px solid #DCE8F0;
+    transition: 0.3s;
+}
+
+.team-member:hover {
+    background: white;
+    transform: translateX(8px);
+}
+
+.member-number {
+    color: #5A9AC9;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.team-member h3 {
+    color: var(--navy);
+    margin-bottom: 6px;
+    font-size: 19px;
+}
+
+.team-member p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.member-icon {
+    margin-left: auto;
+    color: var(--blue);
+    font-size: 25px;
+}
+
+/* CLOSING SECTION */
+
+.closing-section {
+    padding: 90px 8%;
+    text-align: center;
+    background: var(--light);
+}
+
+.closing-section h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.closing-section p {
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto 28px;
+}
+
+.primary-button {
+    display: inline-block;
+    background: var(--navy);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.primary-button:hover {
+    background: #5A9AC9;
+    transform: translateY(-3px);
+}
+
+/* FOOTER - UPDATED LAYOUT */
+
+footer {
+    width: 100%;
+    background: #173B60;
+    color: white;
+    padding: 55px 8% 25px;
+}
+
+.footer-main {
+    width: 100%;
+    max-width: 1450px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(280px, 1.5fr) minmax(150px, 0.8fr) minmax(150px, 0.8fr);
+    column-gap: 70px;
+    row-gap: 35px;
+    padding-bottom: 42px;
+    align-items: start;
+}
+
+.footer-brand {
+    font-family: 'Nunito', sans-serif;
+    font-size: 29px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.footer-brand span {
+    color: #91C8ED;
+}
+
+.footer-main p {
+    color: #D2E5F3;
+    font-size: 13px;
+    line-height: 1.9;
+    max-width: 310px;
+}
+
+.footer-main h3 {
+    margin-bottom: 17px;
+    font-size: 15px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    color: #D2E5F3;
+    font-size: 13px;
+    transition: 0.3s;
+    width: fit-content;
+}
+
+.footer-links a:hover {
+    color: white;
+    transform: translateX(3px);
+}
+
+.footer-bottom {
+    width: 100%;
+    max-width: 1450px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    padding-top: 22px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    column-gap: 20px;
+    color: #D2E5F3;
+    font-size: 12px;
+}
+
+.footer-bottom span:first-child {
+    text-align: left;
+}
+
+.footer-bottom span:last-child {
+    text-align: right;
+}
+
+.demo-version {
+    color: #91C8ED;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 950px) {
+    header {
+        padding: 15px 4%;
+    }
+
+    nav {
+        gap: 14px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .story-section {
+        gap: 40px;
+    }
+}
+
+@media(max-width: 650px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero {
+        padding: 65px 6%;
+    }
+
+    .about-hero {
+        padding: 65px 6% 45px;
+    }
+
+    .hero-image {
+        height: 250px;
+    }
+
+    .story-section {
+        padding: 75px 7%;
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .story-title h2,
+    .objectives-header h2 {
+        font-size: 34px;
+    }
+
+    .mission-section,
+    .objectives-section {
+        padding: 75px 7%;
+    }
+
+    .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .mission-heading h2,
+    .team-heading h2 {
+        font-size: 34px;
+    }
+
+    .objective-row {
+        grid-template-columns: 55px 1fr;
+        gap: 15px;
+    }
+
+    .objective-number {
+        font-size: 27px;
+    }
+
+    .objective-row h3 {
+        font-size: 18px;
+    }
+
+    .team-section {
+        padding: 70px 6%;
+    }
+
+    .team-member {
+        padding: 22px 12px;
+        gap: 15px;
+    }
+
+    .team-member h3 {
+        font-size: 15px;
+    }
+
+    .closing-section {
+        padding: 70px 7%;
+    }
+
+    .closing-section h2 {
+        font-size: 32px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 30px;
+        row-gap: 30px;
+    }
+
+    .footer-brand-column {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        row-gap: 12px;
+        text-align: center;
+    }
+
+    .footer-bottom span:first-child,
+    .footer-bottom span:last-child {
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+    <a href="Home.html" class="logo">
+        <img src="images/logo.png" alt="Pet Care Logo">
+        Pet <span>Care</span>
+    </a>
+
+    <nav>
+        <a href="Home.html">Home</a>
+        <a href="about.html" class="active">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="features.html">Features</a>
+        <a href="demo.html">Demo</a>
+        <a href="contact.html" class="nav-cta">Contact Us</a>
+    </nav>
+</header>
+
+<!-- PAGE INTRO -->
+
+<section class="about-hero">
+    <div class="hero-content">
+        <span class="eyebrow">ABOUT PET CARE</span>
+
+        <h1>
+            More Than Just
+            <span>Pet Care.</span>
+        </h1>
+
+        <p class="hero-description">
+            We believe every pet deserves attention, care, and a happy life.
+            Pet Care brings essential pet care services together in one
+            convenient mobile application.
+        </p>
+    </div>
+
+    <div class="hero-image">
+        <img
+            src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85"
+            alt="Happy pets together">
+    </div>
+</section>
+
+<!-- OUR STORY -->
+
+<section class="story-section">
+    <div class="story-title">
+        <span class="eyebrow">OUR STORY</span>
+        <h2>Making Pet Care Easier, Every Day.</h2>
+    </div>
+
+    <div class="story-content">
+        <p>
+            Taking care of a pet involves several responsibilities, from
+            managing pet information and arranging appointments to finding
+            nearby veterinary clinics and remembering important care tasks.
+        </p>
+
+        <p>
+            Pet Care was developed as a mobile application to bring these
+            essential services together in one place. It aims to make
+            everyday pet care more organized and accessible for pet owners
+            in Bahrain.
+        </p>
+
+        <div class="story-highlight">
+            One convenient place to support the everyday needs of pets
+            and their owners.
+        </div>
+    </div>
+</section>
+
+<!-- MISSION AND VISION -->
+
+<section class="mission-section">
+    <div class="mission-heading">
+        <span class="eyebrow">WHAT DRIVES US</span>
+        <h2>Our Mission & Vision</h2>
+    </div>
+
+    <div class="mission-grid">
+        <div class="mission-item">
+            <div class="mission-icon">♡</div>
+            <h3>Our Mission</h3>
+            <p>
+                To simplify pet care by providing a convenient mobile
+                application that helps pet owners organize essential
+                services and manage their pets' everyday needs.
+            </p>
+        </div>
+
+        <div class="mission-item">
+            <div class="mission-icon">✧</div>
+            <h3>Our Vision</h3>
+            <p>
+                To contribute to a more connected and accessible pet care
+                experience in Bahrain by bringing useful services and
+                resources together in one platform.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- OBJECTIVES -->
+
+<section class="objectives-section">
+    <div class="objectives-header">
+        <span class="eyebrow">OUR GOALS</span>
+        <h2>What We Aim to Achieve</h2>
+        <p>
+            Our project focuses on understanding pet owners' needs and
+            developing a practical mobile solution for everyday pet care.
+        </p>
+    </div>
+
+    <div class="objective-row">
+        <div class="objective-number">01</div>
+        <div>
+            <h3>Understanding Pet Owners' Needs</h3>
+            <p>
+                Explore pet owners' needs, common pet-care challenges,
+                and existing pet-care applications.
+            </p>
+        </div>
+    </div>
+
+    <div class="objective-row">
+        <div class="objective-number">02</div>
+        <div>
+            <h3>Developing a Practical Pet Care Solution</h3>
+            <p>
+                Design and evaluate a mobile-based pet care application
+                while exploring its entrepreneurial potential through
+                target customers, partnerships, revenue opportunities,
+                and business sustainability.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- OUR TEAM -->
+
+<section class="team-section">
+    <div class="team-heading">
+        <span class="eyebrow">THE PEOPLE BEHIND THE PROJECT</span>
+        <h2>Meet Our Team</h2>
+        <p>
+            A dedicated team working together to create a better
+            pet care experience.
+        </p>
+    </div>
+
+    <div class="team-list">
+
+        <div class="team-member">
+            <span class="member-number">01</span>
+            <div>
+                <h3>Maryam Habib Ali</h3>
+                <p>Project Team Member</p>
+            </div>
+            <span class="member-icon">✦</span>
+        </div>
+
+        <div class="team-member">
+            <span class="member-number">02</span>
+            <div>
+                <h3>Maryam Abdulkarim Juma</h3>
+                <p>Project Team Member</p>
+            </div>
+            <span class="member-icon">✦</span>
+        </div>
+
+        <div class="team-member">
+            <span class="member-number">03</span>
+            <div>
+                <h3>Zainab Ebrahim Deyab</h3>
+                <p>Project Team Member</p>
+            </div>
+            <span class="member-icon">✦</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- CLOSING SECTION -->
+
+<section class="closing-section">
+    <span class="eyebrow">HAPPY PETS, HAPPY LIFE!</span>
+
+    <h2>Because Every Pet Matters.</h2>
+
+    <p>
+        Discover how Pet Care brings essential pet care services
+        together to support you and your beloved pets.
+    </p>
+
+    <a href="services.html" class="primary-button">
+        Explore Our Services
+    </a>
+</section>
+
+<!-- FOOTER - SAME AS HOME -->
+
+<footer>
+    <div class="footer-main">
+
+        <div class="footer-brand-column">
+            <div class="footer-brand">
+                Pet <span>Care</span> 🐾
+            </div>
+
+            <p>
+                Happy Pets, Happy Life!
+                Bringing essential pet care services
+                together in one convenient platform.
+            </p>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+
+            <div class="footer-links">
+                <a href="Home.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="features.html">Features</a>
+                <a href="demo.html">Demo</a>
+            </div>
+        </div>
+
+        <div>
+            <h3>Get in Touch</h3>
+
+            <div class="footer-links">
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Pet Care Application. All Rights Reserved.</span>
+
+        <span class="demo-version">Demo Version</span>
+
+        <span>Made with 💙 for pets and their owners.</span>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Pet Assistant | Pet Care</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --navy: #173B60;
+    --blue: #82BDE5;
+    --light: #EAF6FD;
+    --pale: #F6FAFD;
+    --gray: #718397;
+    --border: #DFEAF2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--pale);
+    color: var(--navy);
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+button, input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app {
+    width: 100%;
+    max-width: 850px;
+    height: 100vh;
+    height: 100dvh;
+    margin: auto;
+    background: #F5FAFE;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* HEADER */
+
+.app-header {
+    flex-shrink: 0;
+    height: 72px;
+    padding: 0 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-bottom: 1px solid var(--border);
+}
+
+.app-header h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 23px;
+    font-weight: 900;
+}
+
+.back-btn,
+.clear-btn {
+    width: 42px;
+    height: 42px;
+    border: none;
+    background: transparent;
+    color: var(--navy);
+    font-size: 27px;
+    border-radius: 50%;
+    transition: .2s;
+}
+
+.back-btn:hover,
+.clear-btn:hover {
+    background: var(--light);
+}
+
+.clear-btn {
+    font-size: 21px;
+}
+
+/* PET SELECTOR */
+
+.pet-selector {
+    flex-shrink: 0;
+    margin: 15px 18px 10px;
+    padding: 17px 19px;
+    background: #DCEFFA;
+    border-radius: 19px;
+}
+
+.pet-selector h3 {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 13px;
+}
+
+.pet-options {
+    display: flex;
+    gap: 9px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+}
+
+.pet-options::-webkit-scrollbar {
+    display: none;
+}
+
+.pet-option {
+    flex-shrink: 0;
+    border: 1px solid #E2EAF0;
+    border-radius: 11px;
+    padding: 10px 14px;
+    background: white;
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.pet-option.active {
+    background: #78B9E0;
+    color: white;
+    border-color: #78B9E0;
+}
+
+/* STATUS */
+
+.connection {
+    flex-shrink: 0;
+    margin: 0 18px 10px;
+    padding: 10px 14px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 12px;
+    color: var(--gray);
+}
+
+.connection-dot {
+    width: 8px;
+    height: 8px;
+    background: #35A66B;
+    border-radius: 50%;
+}
+
+/* CHAT */
+
+.chat-area {
+    flex: 1;
+    min-height: 0;
+    padding: 17px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+}
+
+.message {
+    max-width: 85%;
+    padding: 14px 17px;
+    border-radius: 19px;
+    font-size: 14px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    animation: appear .25s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(7px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message.ai {
+    align-self: flex-start;
+    background: white;
+    border: 1px solid var(--border);
+    color: #344F68;
+    border-bottom-left-radius: 6px;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: #78B9E0;
+    color: white;
+    border-bottom-right-radius: 6px;
+}
+
+.typing {
+    align-self: flex-start;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 11px 15px;
+    color: var(--gray);
+    font-size: 12px;
+}
+
+/* SUGGESTED QUESTIONS */
+
+.quick-section {
+    flex-shrink: 0;
+    padding: 10px 18px 12px;
+    background: #F5FAFE;
+    border-top: 1px solid #E7F0F6;
+}
+
+.quick-section p {
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 9px;
+    color: var(--gray);
+}
+
+.quick-prompts {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+}
+
+.quick-prompts::-webkit-scrollbar {
+    display: none;
+}
+
+.quick-btn {
+    flex-shrink: 0;
+    background: white;
+    border: 1px solid #DCE8F0;
+    border-radius: 11px;
+    padding: 10px 13px;
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 12px;
+    transition: .2s;
+}
+
+.quick-btn:hover {
+    background: var(--light);
+    border-color: var(--blue);
+}
+
+/* INPUT */
+
+.chat-footer {
+    flex-shrink: 0;
+    padding: 10px 18px 14px;
+    background: white;
+    border-top: 1px solid var(--border);
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#messageInput {
+    flex: 1;
+    min-width: 0;
+    height: 53px;
+    padding: 0 17px;
+    border: 1.8px solid #91C7E4;
+    border-radius: 18px;
+    outline: none;
+    font-size: 14px;
+    background: white;
+    color: var(--navy);
+}
+
+#messageInput:focus {
+    border-color: #65A9D7;
+    box-shadow: 0 0 0 3px rgba(130,189,229,.13);
+}
+
+#messageInput::placeholder {
+    color: #9AAAB8;
+}
+
+.send-btn {
+    width: 53px;
+    height: 53px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 16px;
+    background: var(--blue);
+    color: white;
+    font-size: 23px;
+    transition: .2s;
+}
+
+.send-btn:hover {
+    background: #65A9D7;
+    transform: translateY(-1px);
+}
+
+.disclaimer {
+    text-align: center;
+    margin-top: 9px;
+    font-size: 10px;
+    color: #8797A5;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .app-header {
+        height: 62px;
+        padding: 0 14px;
+    }
+
+    .app-header h1 {
+        font-size: 20px;
+    }
+
+    .pet-selector {
+        margin: 11px 12px 8px;
+        padding: 14px;
+        border-radius: 16px;
+    }
+
+    .pet-selector h3 {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .pet-option {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+
+    .connection {
+        margin: 0 12px 7px;
+        padding: 9px 12px;
+    }
+
+    .chat-area {
+        padding: 13px 12px;
+        gap: 12px;
+    }
+
+    .message {
+        max-width: 93%;
+        font-size: 13px;
+        padding: 12px 14px;
+    }
+
+    .quick-section {
+        padding: 9px 12px 10px;
+    }
+
+    .quick-btn {
+        padding: 9px 11px;
+        font-size: 11px;
+    }
+
+    .chat-footer {
+        padding: 9px 12px 12px;
+    }
+
+    #messageInput {
+        height: 49px;
+        font-size: 13px;
+    }
+
+    .send-btn {
+        width: 49px;
+        height: 49px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+    <header class="app-header">
+
+        <button class="back-btn"
+            onclick="window.location.href='Home.html'"
+            aria-label="Back to Home">
+            ←
+        </button>
+
+        <h1>AI Pet Assistant</h1>
+
+        <button class="clear-btn"
+            onclick="clearChat()"
+            aria-label="Clear conversation">
+            🗑
+        </button>
+
+    </header>
+
+    <!-- PET SELECTOR -->
+    <section class="pet-selector">
+
+        <h3>Who are we talking about?</h3>
+
+        <div class="pet-options">
+
+            <button class="pet-option active" data-pet="Cat">✓ 🐱 Cat</button>
+            <button class="pet-option" data-pet="Dog">🐶 Dog</button>
+            <button class="pet-option" data-pet="Bird">🐦 Bird</button>
+            <button class="pet-option" data-pet="Rabbit">🐰 Rabbit</button>
+            <button class="pet-option" data-pet="Hamster">🐹 Hamster</button>
+            <button class="pet-option" data-pet="Other">🐾 Other</button>
+
+        </div>
+
+    </section>
+
+    <!-- STATUS -->
+    <div class="connection">
+
+        <span class="connection-dot"></span>
+
+        <span id="connectionText">
+            PCA Assistant • Ready to help
+        </span>
+
+    </div>
+
+    <!-- CHAT AREA -->
+    <section class="chat-area" id="chatArea">
+
+        <div class="message ai">
+            Hi! I'm your Pet Care helper 🐾
+
+            Select your pet and ask me about food, grooming, activity, health or safety.
+
+            Tell me about your pet and I'll do my best to help!
+        </div>
+
+    </section>
+
+    <!-- SUGGESTED QUESTIONS -->
+    <section class="quick-section">
+
+        <p>Suggested questions</p>
+
+        <div class="quick-prompts">
+
+            <button class="quick-btn"
+                onclick="askSuggestion('What is the best food for my pet?')">
+                🍽 Food tips
+            </button>
+
+            <button class="quick-btn"
+                onclick="askSuggestion('How should I groom my pet?')">
+                🛁 Grooming
+            </button>
+
+            <button class="quick-btn"
+                onclick="askSuggestion('How much exercise does my pet need?')">
+                ⚽ Exercise & play
+            </button>
+
+            <button class="quick-btn"
+                onclick="askSuggestion('How can I keep my pet healthy and safe?')">
+                🛡 Health & safety
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- INPUT -->
+    <footer class="chat-footer">
+
+        <div class="input-row">
+
+            <input
+                type="text"
+                id="messageInput"
+                placeholder="Ask about your pet..."
+                autocomplete="off"
+            >
+
+            <button class="send-btn"
+                onclick="sendMessage()"
+                aria-label="Send message">
+                ➤
+            </button>
+
+        </div>
+
+        <p class="disclaimer">
+            General pet care tips only • Not a veterinarian
+        </p>
+
+    </footer>
+
+</div>
+
+<script>
+
+/* CURRENT PET AND CONVERSATION */
+
+let selectedPet = "Cat";
+let conversation = [];
+
+
+/* PET SELECTION */
+
+document.querySelectorAll(".pet-option").forEach(button => {
+
+    button.addEventListener("click", function() {
+
+        document.querySelectorAll(".pet-option").forEach(item => {
+
+            item.classList.remove("active");
+            item.textContent = item.textContent.replace("✓ ", "");
+
+        });
+
+        this.classList.add("active");
+        this.textContent = "✓ " + this.textContent;
+
+        selectedPet = this.dataset.pet;
+
+        clearChat();
+
+    });
+
+});
+
+
+/* ADD MESSAGE */
+
+function addMessage(type, text) {
+
+    const message = document.createElement("div");
+
+    message.className = "message " + type;
+    message.textContent = text;
+
+    const chatArea = document.getElementById("chatArea");
+
+    chatArea.appendChild(message);
+    chatArea.scrollTop = chatArea.scrollHeight;
+
+}
+
+
+/* PET CARE RESPONSE ENGINE */
+
+function getAIResponse(question) {
+
+    const q = question.toLowerCase();
+
+    const greetings = ["hi", "hello", "hey", "مرحبا", "هلا"];
+    const foodWords = ["food", "eat", "diet", "meal", "hungry", "أكل", "طعام", "غذاء"];
+    const waterWords = ["water", "drink", "thirsty", "ماء", "يشرب"];
+    const groomingWords = ["groom", "bath", "wash", "brush", "clean", "حمام", "تنظيف", "استحمام"];
+    const exerciseWords = ["exercise", "play", "active", "walk", "activity", "لعب", "رياضة", "مشي"];
+    const healthWords = ["sick", "health", "ill", "vomit", "pain", "symptom", "مرض", "صحة", "تعبان"];
+    const behaviorWords = ["behavior", "bite", "aggressive", "cry", "bark", "scratch", "سلوك", "يعض", "يصرخ"];
+    const sleepWords = ["sleep", "sleeping", "rest", "ينام", "نوم"];
+    const ageWords = ["age", "old", "young", "kitten", "puppy", "عمر", "صغير", "كبير"];
+
+    function containsAny(words) {
+        return words.some(word => q.includes(word));
+    }
+
+    const petAdvice = {
+
+        Cat: {
+            food: "Cats need a balanced diet designed for their life stage. Choose complete cat food with animal protein, provide fresh water daily, and avoid onions, garlic, chocolate and grapes. 🐱",
+            grooming: "Brush your cat regularly to reduce loose hair and hairballs. Most cats do not need frequent baths. Check their ears, eyes and nails gently.",
+            exercise: "Cats enjoy interactive play! Try toy mice, feather wands and puzzle feeders. Short play sessions several times a day can help keep your cat active.",
+            health: "Watch for changes in appetite, drinking, litter box habits, energy and behavior. Difficulty breathing, collapse or inability to urinate requires immediate veterinary attention.",
+            behavior: "Cats communicate through body language. Give your cat hiding places, scratching posts and a calm environment. Avoid punishment and reward positive behavior.",
+            sleep: "Cats usually sleep for many hours throughout the day. Provide a quiet, comfortable and safe sleeping area.",
+            age: "Kittens need special kitten food and more frequent veterinary checkups. Adult and senior cats have different nutritional and care needs."
+        },
+
+        Dog: {
+            food: "Choose complete dog food suitable for your dog's age, size and activity level. Provide clean water and avoid chocolate, grapes, raisins, onions and cooked bones. 🐶",
+            grooming: "Brush your dog according to its coat type. Check its ears, paws and nails regularly. Bath frequency depends on the breed and lifestyle.",
+            exercise: "Dogs need regular physical activity and mental stimulation. Walks, fetch, training games and interactive toys are great options.",
+            health: "Monitor appetite, energy, breathing, stool and behavior. Sudden weakness, difficulty breathing, seizures or suspected poisoning require immediate veterinary attention.",
+            behavior: "Use positive reinforcement and consistent routines. Reward good behavior and avoid physical punishment. Sudden aggression should be discussed with a veterinarian.",
+            sleep: "Provide your dog with a comfortable, quiet sleeping place. Puppies and older dogs may need more rest.",
+            age: "Puppies need age-appropriate food, socialization and regular vaccinations. Adult and senior dogs may require different nutrition and exercise."
+        },
+
+        Bird: {
+            food: "Bird diets depend on their species. Many pet birds benefit from a suitable formulated pellet diet with appropriate vegetables. Do not feed avocado, chocolate or caffeine. 🐦",
+            grooming: "Provide suitable bathing opportunities and keep the cage clean. Avoid trimming feathers or nails without guidance from an avian veterinarian.",
+            exercise: "Birds need safe movement, toys and mental stimulation. Provide supervised out-of-cage time when the environment is secure.",
+            health: "Birds may hide illness. Changes in breathing, posture, droppings, appetite or activity should be checked promptly by an avian veterinarian.",
+            behavior: "Use gentle interaction and patience. Offer toys, enrichment and a predictable routine. Never force handling if your bird is frightened.",
+            sleep: "Most pet birds need a consistent, quiet sleeping routine and a dark, peaceful environment.",
+            age: "Care needs vary greatly between bird species. Tell me which bird you have for more relevant general advice."
+        },
+
+        Rabbit: {
+            food: "Hay should make up most of a rabbit's diet. Provide fresh water and suitable leafy greens. Introduce new foods gradually and avoid sugary treats. 🐰",
+            grooming: "Brush your rabbit regularly, especially during shedding. Keep its living area clean and check its nails carefully.",
+            exercise: "Rabbits need daily supervised time to move, explore and play in a safe area. Provide tunnels and chew-safe toys.",
+            health: "Rabbits that stop eating or producing droppings need urgent veterinary attention. Monitor their teeth, weight and behavior.",
+            behavior: "Rabbits need gentle handling and places to hide. They may thump, dig or chew as natural behaviors. Provide suitable enrichment.",
+            sleep: "Give your rabbit a quiet, sheltered and comfortable resting area.",
+            age: "Young rabbits need age-appropriate food and veterinary advice. Their diet changes as they grow."
+        },
+
+        Hamster: {
+            food: "Use a balanced hamster food mix designed for its species. Provide fresh water and small suitable portions of vegetables. Avoid chocolate, sweets and onion. 🐹",
+            grooming: "Hamsters usually groom themselves. Keep their enclosure clean and provide suitable sand baths for species that need them.",
+            exercise: "Provide a safe, appropriately sized exercise wheel, tunnels and enrichment. Make sure the wheel has a solid running surface.",
+            health: "Look for changes in eating, drinking, movement, fur or breathing. Sudden illness in small animals should be checked by a veterinarian.",
+            behavior: "Hamsters are often most active at night. Approach them gently and allow them to become comfortable with handling.",
+            sleep: "Hamsters usually sleep during the day. Avoid waking them suddenly and provide a quiet sleeping area.",
+            age: "Hamsters have relatively short lifespans and their care depends on their species. Regular observation helps you notice changes early."
+        },
+
+        Other: {
+            food: "The best diet depends on the animal species. Choose food specifically designed for your pet and provide fresh water. Tell me which animal you have for more relevant advice.",
+            grooming: "Grooming needs depend on the species. Keep your pet clean and use products that are safe for its type of animal.",
+            exercise: "Provide safe activities and enrichment suitable for your pet's species and age.",
+            health: "Monitor eating, drinking, movement and behavior. Contact a veterinarian if you notice unusual symptoms.",
+            behavior: "Learn your pet's normal behavior and provide a calm, safe environment.",
+            sleep: "Provide a quiet, comfortable sleeping area suitable for your pet's species.",
+            age: "Care needs change as pets grow. Tell me your pet's species and age for more specific general guidance."
+        }
+
+    };
+
+    const advice = petAdvice[selectedPet];
+
+    if (containsAny(greetings)) {
+        return "Hello! 🐾 I'm happy to help you with your " + selectedPet + ". What would you like to know about your pet today?";
+    }
+
+    if (containsAny(foodWords)) {
+        return "🍽 Food tips for your " + selectedPet + ":\n\n" + advice.food;
+    }
+
+    if (containsAny(waterWords)) {
+        return "💧 Fresh, clean water should always be available. Check your pet's water bowl regularly and keep it clean. If you notice a sudden change in drinking habits, contact your veterinarian.";
+    }
+
+    if (containsAny(groomingWords)) {
+        return "🛁 Grooming tips for your " + selectedPet + ":\n\n" + advice.grooming;
+    }
+
+    if (containsAny(exerciseWords)) {
+        return "⚽ Exercise and play:\n\n" + advice.exercise;
+    }
+
+    if (containsAny(healthWords)) {
+        return "🩺 Health and safety:\n\n" + advice.health;
+    }
+
+    if (containsAny(behaviorWords)) {
+        return "🐾 Behavior advice:\n\n" + advice.behavior;
+    }
+
+    if (containsAny(sleepWords)) {
+        return "😴 Sleeping tips:\n\n" + advice.sleep;
+    }
+
+    if (containsAny(ageWords)) {
+        return "🐾 Age-related care:\n\n" + advice.age;
+    }
+
+    if (q.includes("thank") || q.includes("شكرا") || q.includes("مشكور")) {
+        return "You're very welcome! 💙 I'm always here to help you take care of your " + selectedPet + ".";
+    }
+
+    if (q.includes("name") || q.includes("اسم")) {
+        return "I'd love to know your pet's name! 🐾 You can tell me its name, age and any details you'd like me to consider in our conversation.";
+    }
+
+    if (q.includes("breed") || q.includes("نوع")) {
+        return "There are many different breeds with different care needs. Tell me your " + selectedPet + "'s breed and age, and I'll help you with suitable general care tips.";
+    }
+
+    return "Thanks for your question about your " + selectedPet + "! 🐾\n\nI can help with food, grooming, exercise, health, behavior and sleeping routines.\n\nCould you tell me a little more about what you want to know? For example, how old is your pet, and what have you noticed?";
+
+}
+
+
+/* SEND MESSAGE */
+
+function sendMessage(customText) {
+
+    const input = document.getElementById("messageInput");
+
+    const text = (customText || input.value).trim();
+
+    if (!text) return;
+
+    addMessage("user", text);
+
+    conversation.push(text);
+
+    input.value = "";
+
+    const chatArea = document.getElementById("chatArea");
+
+    const typing = document.createElement("div");
+
+    typing.className = "typing";
+    typing.id = "typing";
+    typing.textContent = "Pet Care Assistant is typing...";
+
+    chatArea.appendChild(typing);
+    chatArea.scrollTop = chatArea.scrollHeight;
+
+    document.getElementById("connectionText").textContent =
+        "PCA Assistant • Preparing your answer...";
+
+    setTimeout(() => {
+
+        typing.remove();
+
+        const answer = getAIResponse(text);
+
+        addMessage("ai", answer);
+
+        conversation.push(answer);
+
+        document.getElementById("connectionText").textContent =
+            "PCA Assistant • Ready to help";
+
+    }, 650);
+
+}
+
+
+/* SUGGESTED QUESTIONS */
+
+function askSuggestion(question) {
+    sendMessage(question);
+}
+
+
+/* ENTER TO SEND */
+
+document.getElementById("messageInput").addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+
+});
+
+
+/* CLEAR CHAT */
+
+function clearChat() {
+
+    conversation = [];
+
+    document.getElementById("chatArea").innerHTML = "";
+
+    addMessage(
+        "ai",
+        "Hi! I'm your Pet Care helper 🐾\n\nYour conversation has been cleared. What would you like to know about your " + selectedPet + "?"
+    );
+
+    document.getElementById("connectionText").textContent =
+        "PCA Assistant • Ready to help";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Features | Pet Care</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #173B60;
+      --blue: #82BDE5;
+      --light: #EAF6FD;
+      --pale: #F6FAFD;
+      --gray: #718397;
+      --white: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--navy);
+      background: white;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER - SAME AS HOME */
+
+    header {
+      width: 100%;
+      background: rgba(255,255,255,0.96);
+      padding: 17px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #EDF3F7;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 27px;
+      font-weight: 900;
+    }
+
+    .logo img {
+      width: 49px;
+      height: 49px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--blue);
+    }
+
+    .nav-cta {
+      background: var(--navy);
+      color: white;
+      padding: 12px 23px;
+      border-radius: 30px;
+    }
+
+    .nav-cta:hover {
+      background: #315F89;
+      color: white;
+    }
+
+    /* HERO */
+
+    .features-hero {
+      min-height: 570px;
+      padding: 90px 8%;
+      background: var(--pale);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 65px;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: #5A9AC9;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 22px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(45px, 5.5vw, 72px);
+      line-height: 1.08;
+      font-weight: 900;
+      margin-bottom: 25px;
+    }
+
+    .hero-text h1 span {
+      color: var(--blue);
+    }
+
+    .hero-text p {
+      color: var(--gray);
+      font-size: 16px;
+      line-height: 1.9;
+      max-width: 510px;
+      margin-bottom: 30px;
+    }
+
+    .hero-button {
+      display: inline-block;
+      background: var(--navy);
+      color: white;
+      padding: 15px 28px;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .hero-button:hover {
+      background: #5A9AC9;
+      transform: translateY(-3px);
+    }
+
+    /* PHONE MOCKUP */
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      min-height: 390px;
+    }
+
+    .phone {
+      width: 235px;
+      min-height: 440px;
+      background: white;
+      border: 9px solid #173B60;
+      border-radius: 35px;
+      padding: 25px 17px;
+      position: relative;
+      box-shadow: 0 25px 60px rgba(23, 59, 96, 0.17);
+      z-index: 2;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      width: 75px;
+      height: 15px;
+      border-radius: 0 0 12px 12px;
+      background: #173B60;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .phone-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 7px 0 28px;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--gray);
+    }
+
+    .phone-welcome {
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 5px;
+    }
+
+    .phone-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 21px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .phone-pet {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .pet-avatar {
+      width: 55px;
+      height: 55px;
+      background: white;
+      border-radius: 13px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .phone-pet h3 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .phone-pet p {
+      font-size: 10px;
+      color: var(--gray);
+    }
+
+    .phone-section-title {
+      font-size: 12px;
+      font-weight: 900;
+      margin: 18px 0 10px;
+    }
+
+    .phone-action {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px;
+      border: 1px solid #E8EFF4;
+      border-radius: 11px;
+      margin-bottom: 8px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .action-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--light);
+      color: #5A9AC9;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .floating-note {
+      position: absolute;
+      background: white;
+      padding: 16px 19px;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(23, 59, 96, 0.12);
+      font-size: 12px;
+      font-weight: 800;
+      z-index: 3;
+    }
+
+    .floating-note.one {
+      top: 55px;
+      left: -5px;
+    }
+
+    .floating-note.two {
+      bottom: 55px;
+      right: -5px;
+    }
+
+    .floating-note span {
+      color: #5A9AC9;
+      margin-right: 5px;
+    }
+
+    /* FEATURE NAVIGATION */
+
+    .feature-nav {
+      padding: 27px 8%;
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #E5EDF3;
+    }
+
+    .feature-nav a {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--gray);
+      transition: 0.3s;
+    }
+
+    .feature-nav a:hover {
+      color: #5A9AC9;
+    }
+
+    /* FEATURE SECTIONS */
+
+    .feature-section {
+      padding: 100px 8%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      scroll-margin-top: 90px;
+    }
+
+    .feature-section.reverse {
+      background: var(--pale);
+    }
+
+    .feature-copy {
+      max-width: 520px;
+    }
+
+    .feature-number {
+      font-family: 'Nunito', sans-serif;
+      color: #B6D9F0;
+      font-size: 65px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .feature-copy h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 38px;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .feature-copy p {
+      color: var(--gray);
+      line-height: 1.95;
+      font-size: 15px;
+      margin-bottom: 22px;
+    }
+
+    .feature-points {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-points li {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .feature-points li span {
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+      background: var(--light);
+      color: #5A9AC9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* VISUAL PANELS */
+
+    .feature-visual {
+      min-height: 360px;
+      background: var(--light);
+      border-radius: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 35px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-section.reverse .feature-visual {
+      background: white;
+    }
+
+    .feature-visual img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    /* MINI APP INTERFACE */
+
+    .mini-window {
+      width: 100%;
+      max-width: 370px;
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 15px 40px rgba(23, 59, 96, 0.09);
+    }
+
+    .mini-heading {
+      font-family: 'Nunito', sans-serif;
+      font-size: 21px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .mini-row {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 14px;
+      border-radius: 13px;
+      background: var(--pale);
+      margin-bottom: 12px;
+    }
+
+    .mini-icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 12px;
+      background: var(--light);
+      color: #5A9AC9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+    }
+
+    .mini-row strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .mini-row small {
+      color: var(--gray);
+      font-size: 11px;
+    }
+
+    .mini-label {
+      display: inline-block;
+      padding: 8px 13px;
+      background: var(--light);
+      color: #477FA9;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 20px;
+      margin-top: 7px;
+    }
+
+    /* AI VISUAL */
+
+    .ai-visual {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .ai-symbol {
+      width: 105px;
+      height: 105px;
+      border-radius: 30px;
+      background: rgba(130, 189, 229, 0.17);
+      color: var(--blue);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 55px;
+      margin-bottom: 25px;
+    }
+
+    .ai-visual h3 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .ai-visual p {
+      max-width: 300px;
+      color: #D1E0EC;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* HIGHLIGHTS */
+
+    .highlights {
+      padding: 85px 8%;
+      background: var(--navy);
+      color: white;
+      text-align: center;
+    }
+
+    .highlights .eyebrow {
+      color: var(--blue);
+    }
+
+    .highlights h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 39px;
+      font-weight: 900;
+      margin-bottom: 50px;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .highlight-item {
+      padding: 10px;
+    }
+
+    .highlight-item span {
+      display: block;
+      font-size: 32px;
+      color: var(--blue);
+      margin-bottom: 17px;
+    }
+
+    .highlight-item h3 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .highlight-item p {
+      color: #D1E0EC;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* CTA */
+
+    .features-cta {
+      padding: 95px 8%;
+      text-align: center;
+      background: var(--light);
+    }
+
+    .features-cta h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 40px;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    .features-cta p {
+      color: var(--gray);
+      max-width: 590px;
+      margin: 0 auto 28px;
+      line-height: 1.8;
+    }
+
+    .primary-button {
+      display: inline-block;
+      background: var(--navy);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .primary-button:hover {
+      background: #5A9AC9;
+      transform: translateY(-3px);
+    }
+
+    /* FOOTER - UPDATED LAYOUT */
+
+    footer {
+      width: 100%;
+      background: var(--navy);
+      padding: 55px 8% 25px;
+      color: white;
+    }
+
+    .footer-main {
+      width: 100%;
+      max-width: 1450px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(280px, 1.5fr) minmax(150px, .8fr) minmax(150px, .8fr);
+      column-gap: 70px;
+      row-gap: 35px;
+      padding-bottom: 42px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-family: 'Nunito', sans-serif;
+      font-size: 29px;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    .footer-brand span {
+      color: #91C8ED;
+    }
+
+    .footer-brand-column p {
+      color: #D2E5F3;
+      font-size: 13px;
+      line-height: 1.9;
+      max-width: 310px;
+    }
+
+    footer h3 {
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: #D2E5F3;
+      font-size: 13px;
+      transition: .3s;
+      width: fit-content;
+    }
+
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(3px);
+    }
+
+    .footer-bottom {
+      width: 100%;
+      max-width: 1450px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 22px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      column-gap: 20px;
+      color: #D2E5F3;
+      font-size: 12px;
+    }
+
+    .footer-bottom span:first-child {
+      text-align: left;
+    }
+
+    .footer-bottom span:last-child {
+      text-align: right;
+    }
+
+    .demo-version {
+      color: #91C8ED;
+      font-weight: 800;
+      letter-spacing: .5px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width: 950px) {
+      header {
+        padding: 15px 4%;
+      }
+
+      nav {
+        gap: 14px;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .features-hero {
+        gap: 25px;
+      }
+
+      .feature-section {
+        gap: 35px;
+      }
+
+      .feature-copy h2 {
+        font-size: 31px;
+      }
+    }
+
+    @media(max-width: 650px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .features-hero {
+        padding: 65px 7%;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 430px;
+      }
+
+      .phone {
+        width: 220px;
+      }
+
+      .floating-note.one {
+        left: 0;
+      }
+
+      .floating-note.two {
+        right: 0;
+      }
+
+      .feature-nav {
+        gap: 17px;
+        padding: 25px 6%;
+      }
+
+      .feature-section {
+        padding: 70px 7%;
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .feature-section.reverse .feature-copy {
+        order: 1;
+      }
+
+      .feature-section.reverse .feature-visual {
+        order: 2;
+      }
+
+      .feature-copy h2 {
+        font-size: 32px;
+      }
+
+      .feature-number {
+        font-size: 50px;
+      }
+
+      .feature-visual {
+        min-height: 300px;
+        padding: 20px;
+      }
+
+      .feature-visual img {
+        height: 250px;
+      }
+
+      .highlights {
+        padding: 70px 7%;
+      }
+
+      .highlights h2 {
+        font-size: 32px;
+      }
+
+      .highlight-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .features-cta {
+        padding: 70px 7%;
+      }
+
+      .features-cta h2 {
+        font-size: 32px;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 30px;
+        row-gap: 30px;
+      }
+
+      .footer-brand-column {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        row-gap: 12px;
+        text-align: center;
+      }
+
+      .footer-bottom span:first-child,
+      .footer-bottom span:last-child {
+        text-align: center;
+      }
+
+      footer {
+        padding: 45px 7% 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <a href="Home.html" class="logo">
+      <img src="images/logo.png" alt="Pet Care Logo">
+      Pet <span>Care</span>
+    </a>
+
+    <nav>
+      <a href="Home.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="features.html" class="active">Features</a>
+      <a href="demo.html">Demo</a>
+      <a href="contact.html" class="nav-cta">Contact Us</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+
+  <section class="features-hero">
+
+    <div class="hero-text">
+      <span class="eyebrow">THE PET CARE EXPERIENCE</span>
+
+      <h1>
+        Smart Features.
+        <span>Better Pet Care.</span>
+      </h1>
+
+      <p>
+        Discover the tools that make Pet Care a convenient
+        companion for managing your pets' everyday needs.
+        From pet profiles to appointments and AI assistance,
+        everything is designed with pet owners in mind.
+      </p>
+
+      <a href="#main-features" class="hero-button">
+        Explore Features
+      </a>
+    </div>
+
+    <div class="hero-visual">
+
+      <div class="floating-note one">
+        <span>♡</span> Pet Profiles
+      </div>
+
+      <div class="phone">
+
+        <div class="phone-top">
+          <span>9:41</span>
+          <span>● ● ●</span>
+        </div>
+
+        <p class="phone-welcome">Welcome to</p>
+        <h2 class="phone-title">Pet Care</h2>
+
+        <div class="phone-pet">
+          <div class="pet-avatar">🐶</div>
+          <h3>My Pets</h3>
+          <p>Manage your pet profiles</p>
+        </div>
+
+        <p class="phone-section-title">Explore Services</p>
+
+        <div class="phone-action">
+          <div class="action-icon">♡</div>
+          <span>My Pets</span>
+        </div>
+
+        <div class="phone-action">
+          <div class="action-icon">▦</div>
+          <span>Appointments</span>
+        </div>
+
+        <div class="phone-action">
+          <div class="action-icon">⌖</div>
+          <span>Nearby Clinics</span>
+        </div>
+
+        <div class="phone-action">
+          <div class="action-icon">✧</div>
+          <span>AI Assistant</span>
+        </div>
+
+      </div>
+
+      <div class="floating-note two">
+        <span>✧</span> All in One App
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURE NAVIGATION -->
+
+  <section class="feature-nav">
+    <a href="#profiles">Pet Profiles</a>
+    <a href="#appointments">Appointments</a>
+    <a href="#clinics">Clinics</a>
+    <a href="#shop">Pet Shop</a>
+    <a href="#assistant">AI Assistant</a>
+    <a href="#reminders">Reminders</a>
+  </section>
+
+  <!-- MAIN FEATURES -->
+
+  <main id="main-features">
+
+    <!-- FEATURE 01 -->
+
+    <section class="feature-section" id="profiles">
+
+      <div class="feature-copy">
+        <div class="feature-number">01</div>
+
+        <span class="eyebrow">PERSONAL PET MANAGEMENT</span>
+
+        <h2>Keep Every Pet's Details Organized.</h2>
+
+        <p>
+          The My Pets feature allows users to add their pets'
+          information and maintain individual pet profiles
+          within the application.
+        </p>
+
+        <ul class="feature-points">
+          <li><span>✓</span> Add pet information</li>
+          <li><span>✓</span> Manage individual pet profiles</li>
+          <li><span>✓</span> Keep pet details in one place</li>
+        </ul>
+      </div>
+
+      <div class="feature-visual">
+
+        <div class="mini-window">
+          <div class="mini-heading">My Pets</div>
+
+          <div class="mini-row">
+            <div class="mini-icon">🐶</div>
+            <div>
+              <strong>Pet Profile</strong>
+              <small>Pet information</small>
+            </div>
+          </div>
+
+          <div class="mini-row">
+            <div class="mini-icon">♡</div>
+            <div>
+              <strong>Pet Details</strong>
+              <small>Individual pet information</small>
+            </div>
+          </div>
+
+          <span class="mini-label">PET MANAGEMENT</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- FEATURE 02 -->
+
+    <section class="feature-section reverse" id="appointments">
+
+      <div class="feature-visual">
+
+        <div class="mini-window">
+          <div class="mini-heading">Appointments</div>
+
+          <div class="mini-row">
+            <div class="mini-icon">▦</div>
+            <div>
+              <strong>Appointment Service</strong>
+              <small>Manage your appointments</small>
+            </div>
+          </div>
+
+          <div class="mini-row">
+            <div class="mini-icon">✓</div>
+            <div>
+              <strong>Appointment Details</strong>
+              <small>Organized appointment information</small>
+            </div>
+          </div>
+
+          <span class="mini-label">APPOINTMENT MANAGEMENT</span>
+        </div>
+
+      </div>
+
+      <div class="feature-copy">
+        <div class="feature-number">02</div>
+
+        <span class="eyebrow">EASY SCHEDULING</span>
+
+        <h2>Manage Pet Appointments.</h2>
+
+        <p>
+          The Appointments feature helps pet owners arrange
+          and manage appointments through the application,
+          making appointment organization more convenient.
+        </p>
+
+        <ul class="feature-points">
+          <li><span>✓</span> Access appointment services</li>
+          <li><span>✓</span> Manage appointment arrangements</li>
+          <li><span>✓</span> Keep appointment information organized</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- FEATURE 03 -->
+
+    <section class="feature-section" id="clinics">
+
+      <div class="feature-copy">
+        <div class="feature-number">03</div>
+
+        <span class="eyebrow">VETERINARY ACCESS</span>
+
+        <h2>Explore Nearby Veterinary Clinics.</h2>
+
+        <p>
+          The Nearby Clinics feature provides access to
+          information about veterinary clinics, helping
+          pet owners explore available care options.
+        </p>
+
+        <ul class="feature-points">
+          <li><span>✓</span> Explore veterinary clinics</li>
+          <li><span>✓</span> Access clinic information</li>
+          <li><span>✓</span> Find available care options</li>
+        </ul>
+      </div>
+
+      <div class="feature-visual">
+        <img
+          src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=1000&q=85"
+          alt="Veterinarian examining a dog"
+        >
+      </div>
+
+    </section>
+
+    <!-- FEATURE 04 -->
+
+    <section class="feature-section reverse" id="shop">
+
+      <div class="feature-visual">
+        <img
+          src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=1000&q=85"
+          alt="Pet products and supplies"
+        >
+      </div>
+
+      <div class="feature-copy">
+        <div class="feature-number">04</div>
+
+        <span class="eyebrow">PET PRODUCTS</span>
+
+        <h2>Discover the Pet Shop.</h2>
+
+        <p>
+          The Pet Shop feature provides a dedicated section
+          where users can explore pet-related products
+          through the application.
+        </p>
+
+        <ul class="feature-points">
+          <li><span>✓</span> Explore pet-related products</li>
+          <li><span>✓</span> Access the Pet Shop section</li>
+          <li><span>✓</span> Browse available items</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- FEATURE 05 -->
+
+    <section class="feature-section" id="assistant">
+
+      <div class="feature-copy">
+        <div class="feature-number">05</div>
+
+        <span class="eyebrow">INTELLIGENT ASSISTANCE</span>
+
+        <h2>Meet Your AI Assistant.</h2>
+
+        <p>
+          The AI Assistant provides additional support
+          within the application by helping users with
+          pet-care-related questions and information.
+        </p>
+
+        <ul class="feature-points">
+          <li><span>✓</span> Access AI assistance</li>
+          <li><span>✓</span> Ask pet-care-related questions</li>
+          <li><span>✓</span> Receive additional information</li>
+        </ul>
+      </div>
+
+      <div class="feature-visual ai-visual">
+
+        <div class="ai-symbol">✧</div>
+
+        <h3>AI Assistant</h3>
+
+        <p>
+          Additional assistance for pet owners,
+          available within the Pet Care application.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- FEATURE 06 -->
+
+    <section class="feature-section reverse" id="reminders">
+
+      <div class="feature-visual">
+
+        <div class="mini-window">
+          <div class="mini-heading">Reminders</div>
+
+          <div class="mini-row">
+            <div class="mini-icon">◷</div>
+            <div>
+              <strong>Pet Care Tasks</strong>
+              <small>Keep important tasks organized</small>
+            </div>
+          </div>
+
+          <div class="mini-row">
+            <div class="mini-icon">✓</div>
+            <div>
+              <strong>Reminders</strong>
+              <small>Manage your reminders</small>
+            </div>
+          </div>
+
+          <span class="mini-label">TASK ORGANIZATION</span>
+        </div>
+
+      </div>
+
+      <div class="feature-copy">
+        <div class="feature-number">06</div>
+
+        <span class="eyebrow">EVERYDAY ORGANIZATION</span>
+
+        <h2>Stay on Track with Reminders.</h2>
+
+        <p>
+          The Reminders feature helps pet owners keep track
+          of important pet-care tasks and organize their
+          everyday responsibilities.
+        </p>
+
+        <ul class="feature-points">
+          <li><span>✓</span> Manage pet-care reminders</li>
+          <li><span>✓</span> Keep important tasks organized</li>
+          <li><span>✓</span> Support everyday pet care routines</li>
+        </ul>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- HIGHLIGHTS -->
+
+  <section class="highlights">
+
+    <span class="eyebrow">WHY PET CARE?</span>
+
+    <h2>Designed Around Pet Owners.</h2>
+
+    <div class="highlight-grid">
+
+      <div class="highlight-item">
+        <span>♡</span>
+        <h3>Pet-Centered Experience</h3>
+        <p>
+          Features designed to support the everyday
+          needs of pets and their owners.
+        </p>
+      </div>
+
+      <div class="highlight-item">
+        <span>✧</span>
+        <h3>Multiple Services</h3>
+        <p>
+          Different pet-care services brought together
+          within one mobile application.
+        </p>
+      </div>
+
+      <div class="highlight-item">
+        <span>✓</span>
+        <h3>Easy Organization</h3>
+        <p>
+          Helpful tools for managing pet information
+          and care-related responsibilities.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="features-cta">
+
+    <span class="eyebrow">EXPERIENCE PET CARE</span>
+
+    <h2>Ready to Explore the App?</h2>
+
+    <p>
+      Discover how Pet Care brings its features together
+      to support a more convenient pet-care experience.
+    </p>
+
+    <a href="demo.html" class="primary-button">
+      View App Demo
+    </a>
+
+  </section>
+
+  <!-- FOOTER - SAME AS HOME -->
+
+  <footer>
+    <div class="footer-main">
+
+      <div class="footer-brand-column">
+        <div class="footer-brand">
+          Pet <span>Care</span> 🐾
+        </div>
+
+        <p>
+          Happy Pets, Happy Life!
+          Bringing essential pet care services
+          together in one convenient platform.
+        </p>
+      </div>
+
+      <div>
+        <h3>Explore</h3>
+
+        <div class="footer-links">
+          <a href="Home.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Services</a>
+          <a href="features.html">Features</a>
+          <a href="demo.html">Demo</a>
+        </div>
+      </div>
+
+      <div>
+        <h3>Get in Touch</h3>
+
+        <div class="footer-links">
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Pet Care Application. All Rights Reserved.</span>
+      <span class="demo-version">Demo Version</span>
+      <span>Made with 💙 for pets and their owners.</span>
+    </div>
+  </footer>
+
+</body>
+</html>

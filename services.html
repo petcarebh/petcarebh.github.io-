@@ -1,0 +1,995 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | Pet Care</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --navy: #173B60;
+    --blue: #82BDE5;
+    --light: #EAF6FD;
+    --pale: #F6FAFD;
+    --gray: #718397;
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy);
+    background: white;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* HEADER - SAME AS HOME */
+
+header {
+    width: 100%;
+    background: rgba(255,255,255,0.96);
+    padding: 17px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #EDF3F7;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 27px;
+    font-weight: 900;
+}
+
+.logo img {
+    width: 49px;
+    height: 49px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.logo span {
+    color: var(--blue);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+nav a {
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--blue);
+}
+
+.nav-cta {
+    background: var(--navy);
+    color: white;
+    padding: 12px 23px;
+    border-radius: 30px;
+}
+
+.nav-cta:hover {
+    background: #315F89;
+    color: white;
+}
+
+/* SERVICES INTRO */
+
+.services-intro {
+    padding: 85px 8% 65px;
+    background: var(--pale);
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 60px;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: #5A9AC9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.intro-text h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(43px, 5.5vw, 68px);
+    font-weight: 900;
+    line-height: 1.08;
+    margin-bottom: 22px;
+}
+
+.intro-text h1 span {
+    color: var(--blue);
+}
+
+.intro-text p {
+    max-width: 570px;
+    color: var(--gray);
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.intro-visual {
+    position: relative;
+    height: 320px;
+}
+
+.intro-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 180px 180px 25px 25px;
+}
+
+.visual-label {
+    position: absolute;
+    bottom: 20px;
+    left: -25px;
+    background: white;
+    padding: 17px 22px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(23, 59, 96, 0.12);
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.visual-label span {
+    color: #5A9AC9;
+}
+
+/* SERVICE INDEX */
+
+.service-index {
+    padding: 35px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #E5EDF3;
+}
+
+.service-index p {
+    color: var(--gray);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.index-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.index-links a {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    transition: 0.3s;
+}
+
+.index-links a:hover {
+    color: #5A9AC9;
+}
+
+/* SERVICES LIST */
+
+.services-list {
+    padding: 35px 8% 100px;
+}
+
+.service-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 0.9fr;
+    gap: 35px;
+    align-items: center;
+    padding: 55px 0;
+    border-bottom: 1px solid #E2EAF0;
+    scroll-margin-top: 100px;
+}
+
+.service-row:nth-child(even) {
+    background: var(--pale);
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 20px;
+    border-bottom: none;
+    margin: 15px -25px;
+}
+
+.service-number {
+    font-family: 'Nunito', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: #B6D9F0;
+    align-self: start;
+}
+
+.service-info h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 29px;
+    font-weight: 900;
+    margin-bottom: 14px;
+}
+
+.service-info p {
+    color: var(--gray);
+    line-height: 1.9;
+    font-size: 15px;
+    max-width: 430px;
+}
+
+.service-tag {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: var(--light);
+    color: #477FA9;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.service-visual {
+    height: 190px;
+    overflow: hidden;
+    border-radius: 18px;
+    background: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.service-row:hover .service-visual img {
+    transform: scale(1.05);
+}
+
+/* AI ASSISTANT CHAT INTERFACE */
+
+.ai-chat-visual {
+    height: 280px;
+    padding: 18px;
+    background: linear-gradient(145deg, #EAF6FD, #D9ECFA);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.chat-window {
+    width: 100%;
+    max-width: 390px;
+    background: white;
+    border-radius: 19px;
+    padding: 17px;
+    box-shadow: 0 12px 35px rgba(23, 59, 96, 0.12);
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #EDF2F6;
+    margin-bottom: 16px;
+}
+
+.ai-avatar {
+    width: 39px;
+    height: 39px;
+    background: var(--light);
+    color: #4F9ACD;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    font-weight: 900;
+}
+
+.chat-header h3 {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.chat-header p {
+    font-size: 10px;
+    color: #72A9CF;
+}
+
+.chat-message {
+    max-width: 85%;
+    padding: 11px 13px;
+    border-radius: 13px;
+    font-size: 10px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.user-message {
+    background: var(--navy);
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+}
+
+.assistant-message {
+    background: var(--light);
+    color: var(--navy);
+    margin-right: auto;
+    border-bottom-left-radius: 4px;
+}
+
+.chat-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid #E7EEF4;
+    border-radius: 25px;
+    margin-top: 14px;
+    color: #9AAABD;
+    font-size: 10px;
+}
+
+.chat-send {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+/* SUPPORT STRIP */
+
+.support-strip {
+    background: var(--navy);
+    padding: 65px 8%;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 35px;
+    text-align: center;
+}
+
+.support-item {
+    padding: 10px;
+}
+
+.support-item span {
+    display: block;
+    font-size: 30px;
+    color: var(--blue);
+    margin-bottom: 15px;
+}
+
+.support-item h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.support-item p {
+    color: #D1E0EC;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* CTA */
+
+.services-cta {
+    padding: 95px 8%;
+    text-align: center;
+    background: var(--light);
+}
+
+.services-cta h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.services-cta p {
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto 28px;
+    line-height: 1.8;
+}
+
+.primary-button {
+    display: inline-block;
+    background: var(--navy);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.primary-button:hover {
+    background: #5A9AC9;
+    transform: translateY(-3px);
+}
+
+/* FOOTER - UPDATED LAYOUT */
+
+footer {
+    width: 100%;
+    background: var(--navy);
+    padding: 55px 8% 25px;
+    color: white;
+}
+
+.footer-main {
+    width: 100%;
+    max-width: 1450px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(280px, 1.5fr) minmax(150px, .8fr) minmax(150px, .8fr);
+    column-gap: 70px;
+    row-gap: 35px;
+    padding-bottom: 42px;
+    align-items: start;
+}
+
+.footer-brand {
+    font-family: 'Nunito', sans-serif;
+    font-size: 29px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.footer-brand span { color: #91C8ED; }
+
+.footer-brand-column p {
+    color: #D2E5F3;
+    font-size: 13px;
+    line-height: 1.9;
+    max-width: 310px;
+}
+
+footer h3 {
+    font-size: 15px;
+    margin-bottom: 18px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    color: #D2E5F3;
+    font-size: 13px;
+    transition: .3s;
+    width: fit-content;
+}
+
+.footer-links a:hover {
+    color: white;
+    transform: translateX(3px);
+}
+
+.footer-bottom {
+    width: 100%;
+    max-width: 1450px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 22px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    column-gap: 20px;
+    color: #D2E5F3;
+    font-size: 12px;
+}
+
+.footer-bottom span:first-child { text-align: left; }
+.footer-bottom span:last-child { text-align: right; }
+
+.demo-version {
+    color: #91C8ED;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 950px) {
+    header {
+        padding: 15px 4%;
+    }
+
+    nav {
+        gap: 14px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .services-intro {
+        gap: 30px;
+    }
+
+    .service-row {
+        grid-template-columns: 65px 1fr 0.8fr;
+        gap: 20px;
+    }
+
+    .service-info h2 {
+        font-size: 24px;
+    }
+}
+
+@media(max-width: 650px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 13px;
+    }
+
+    .services-intro {
+        padding: 60px 7%;
+        grid-template-columns: 1fr;
+    }
+
+    .intro-visual {
+        height: 260px;
+        margin-left: 20px;
+    }
+
+    .service-index {
+        padding: 25px 7%;
+    }
+
+    .index-links {
+        gap: 13px;
+    }
+
+    .services-list {
+        padding: 20px 7% 70px;
+    }
+
+    .service-row,
+    .service-row:nth-child(even) {
+        grid-template-columns: 55px 1fr;
+        gap: 15px;
+        padding: 35px 15px;
+        margin: 10px -10px;
+    }
+
+    .service-number {
+        font-size: 30px;
+    }
+
+    .service-info h2 {
+        font-size: 23px;
+    }
+
+    .service-visual {
+        grid-column: 2;
+        height: 180px;
+        margin-top: 5px;
+    }
+
+    .ai-chat-visual {
+        grid-column: 2;
+        height: 260px;
+        margin-top: 5px;
+        padding: 12px;
+    }
+
+    .chat-window {
+        padding: 13px;
+    }
+
+    .support-strip {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 55px 8%;
+    }
+
+    .services-cta {
+        padding: 70px 7%;
+    }
+
+    .services-cta h2 {
+        font-size: 32px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 30px;
+        row-gap: 30px;
+    }
+
+    .footer-brand-column { grid-column: 1 / -1; }
+
+    .footer-bottom {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        row-gap: 12px;
+        text-align: center;
+    }
+
+    .footer-bottom span:first-child,
+    .footer-bottom span:last-child { text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+    <a href="Home.html" class="logo">
+        <img src="images/logo.png" alt="Pet Care Logo">
+        Pet <span>Care</span>
+    </a>
+
+    <nav>
+        <a href="Home.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="features.html">Features</a>
+        <a href="demo.html">Demo</a>
+        <a href="contact.html" class="nav-cta">Contact Us</a>
+    </nav>
+</header>
+
+<!-- INTRO -->
+
+<section class="services-intro">
+
+    <div class="intro-text">
+        <span class="eyebrow">WHAT WE OFFER</span>
+
+        <h1>
+            Everything Your Pet Needs,
+            <span>In One Place.</span>
+        </h1>
+
+        <p>
+            Pet Care brings together essential services designed to help
+            pet owners organize their responsibilities and manage their
+            pets' everyday needs through one mobile application.
+        </p>
+    </div>
+
+    <div class="intro-visual">
+        <img
+            src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1000&q=85"
+            alt="Dogs enjoying time together"
+        >
+
+        <div class="visual-label">
+            <span>6</span> Essential Services
+        </div>
+    </div>
+
+</section>
+
+<!-- SERVICE INDEX -->
+
+<section class="service-index">
+    <p>EXPLORE OUR SERVICES</p>
+
+    <div class="index-links">
+        <a href="#pets">My Pets</a>
+        <a href="#appointments">Appointments</a>
+        <a href="#clinics">Nearby Clinics</a>
+        <a href="#shop">Pet Shop</a>
+        <a href="#assistant">AI Assistant</a>
+        <a href="#reminders">Reminders</a>
+    </div>
+</section>
+
+<!-- SERVICES LIST -->
+
+<main class="services-list">
+
+    <section class="service-row" id="pets">
+        <div class="service-number">01</div>
+
+        <div class="service-info">
+            <h2>My Pets</h2>
+            <p>
+                Keep your pets' information organized in one place.
+                The My Pets service allows owners to add their pets'
+                details and manage their individual pet profiles.
+            </p>
+            <span class="service-tag">PET PROFILES</span>
+        </div>
+
+        <div class="service-visual">
+            <img
+                src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=900&q=85"
+                alt="Pet dog"
+            >
+        </div>
+    </section>
+
+    <section class="service-row" id="appointments">
+        <div class="service-number">02</div>
+
+        <div class="service-info">
+            <h2>Appointments</h2>
+            <p>
+                Organize your pets' appointments through the application.
+                This service helps pet owners manage appointment
+                arrangements in a more convenient way.
+            </p>
+            <span class="service-tag">APPOINTMENT MANAGEMENT</span>
+        </div>
+
+        <div class="service-visual">
+            <img
+                src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&w=900&q=85"
+                alt="Veterinary appointment"
+            >
+        </div>
+    </section>
+
+    <section class="service-row" id="clinics">
+        <div class="service-number">03</div>
+
+        <div class="service-info">
+            <h2>Nearby Clinics</h2>
+            <p>
+                Find information about nearby veterinary clinics.
+                This service helps pet owners explore available
+                veterinary care options for their pets.
+            </p>
+            <span class="service-tag">VETERINARY CLINICS</span>
+        </div>
+
+        <div class="service-visual">
+            <img
+                src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=900&q=85"
+                alt="Veterinarian caring for a dog"
+            >
+        </div>
+    </section>
+
+    <section class="service-row" id="shop">
+        <div class="service-number">04</div>
+
+        <div class="service-info">
+            <h2>Pet Shop</h2>
+            <p>
+                Explore pet-related products through the Pet Shop section.
+                It provides pet owners with a dedicated place to browse
+                items for their pets.
+            </p>
+            <span class="service-tag">PET PRODUCTS</span>
+        </div>
+
+        <div class="service-visual">
+            <img
+                src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=900&q=85"
+                alt="Pet food and supplies"
+            >
+        </div>
+    </section>
+
+    <section class="service-row" id="assistant">
+        <div class="service-number">05</div>
+
+        <div class="service-info">
+            <h2>AI Assistant</h2>
+            <p>
+                Access the AI Assistant within the application for
+                additional support with pet-care-related questions
+                and information.
+            </p>
+            <span class="service-tag">AI-POWERED SUPPORT</span>
+        </div>
+
+        <div class="ai-chat-visual">
+            <div class="chat-window">
+
+                <div class="chat-header">
+                    <div class="ai-avatar">✧</div>
+                    <div>
+                        <h3>Pet Care AI</h3>
+                        <p>AI Assistant</p>
+                    </div>
+                </div>
+
+                <div class="chat-message user-message">
+                    How can I take better care of my pet?
+                </div>
+
+                <div class="chat-message assistant-message">
+                    I'm here to help! You can ask me your pet-care-related
+                    questions anytime.
+                </div>
+
+                <div class="chat-input">
+                    <span>Type your question...</span>
+                    <span class="chat-send">➤</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="service-row" id="reminders">
+        <div class="service-number">06</div>
+
+        <div class="service-info">
+            <h2>Reminders</h2>
+            <p>
+                Keep track of important pet-care tasks using the
+                Reminders service, helping owners stay more organized
+                with their pets' daily responsibilities.
+            </p>
+            <span class="service-tag">TASK ORGANIZATION</span>
+        </div>
+
+        <div class="service-visual">
+            <img
+                src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=900&q=85"
+                alt="Pet at home"
+            >
+        </div>
+    </section>
+
+</main>
+
+<!-- SUPPORT STRIP -->
+
+<section class="support-strip">
+
+    <div class="support-item">
+        <span>♡</span>
+        <h3>Pet-Focused</h3>
+        <p>
+            Designed around the everyday needs of pets and their owners.
+        </p>
+    </div>
+
+    <div class="support-item">
+        <span>✧</span>
+        <h3>Convenient Access</h3>
+        <p>
+            Essential pet-care services brought together in one application.
+        </p>
+    </div>
+
+    <div class="support-item">
+        <span>✓</span>
+        <h3>Better Organization</h3>
+        <p>
+            Helpful tools to manage pet information and care-related tasks.
+        </p>
+    </div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="services-cta">
+    <span class="eyebrow">DISCOVER PET CARE</span>
+
+    <h2>Explore a Better Way to Care.</h2>
+
+    <p>
+        Discover the application and explore how its services
+        can support your everyday pet-care routine.
+    </p>
+
+    <a href="demo.html" class="primary-button">
+        Explore the App
+    </a>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    <div class="footer-main">
+
+        <div class="footer-brand-column">
+            <div class="footer-brand">
+                Pet <span>Care</span> 🐾
+            </div>
+
+            <p>
+                Happy Pets, Happy Life!
+                Bringing essential pet care services
+                together in one convenient platform.
+            </p>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+
+            <div class="footer-links">
+                <a href="Home.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="features.html">Features</a>
+                <a href="demo.html">Demo</a>
+            </div>
+        </div>
+
+        <div>
+            <h3>Get in Touch</h3>
+
+            <div class="footer-links">
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Pet Care Application. All Rights Reserved.</span>
+        <span class="demo-version">Demo Version</span>
+        <span>Made with 💙 for pets and their owners.</span>
+    </div>
+</footer>
+
+</body>
+</html>

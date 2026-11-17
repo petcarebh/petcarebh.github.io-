@@ -1,0 +1,963 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Pet Care</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #173B60;
+            --blue: #82BDE5;
+            --light: #EAF6FD;
+            --pale: #F6FAFD;
+            --gray: #718397;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--pale);
+            color: var(--navy);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            background: rgba(255,255,255,0.96);
+            padding: 17px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #EDF3F7;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 27px;
+            font-weight: 900;
+        }
+
+        .logo img {
+            width: 49px;
+            height: 49px;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+        }
+
+        .logo span {
+            color: var(--blue);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        nav a {
+            font-size: 14px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--blue);
+        }
+
+        .nav-cta {
+            background: var(--navy);
+            color: white;
+            padding: 12px 23px;
+            border-radius: 30px;
+        }
+
+        .nav-cta:hover {
+            background: #315F89;
+            color: white;
+        }
+
+        /* PAGE TITLE */
+        .page-hero {
+            background: linear-gradient(120deg, #EAF6FD, #F6FAFD);
+            text-align: center;
+            padding: 55px 20px 45px;
+        }
+
+        .page-hero h1 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .page-hero p {
+            color: var(--gray);
+            font-size: 15px;
+        }
+
+        .breadcrumb {
+            margin-top: 18px;
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        .breadcrumb span {
+            color: var(--blue);
+            font-weight: 800;
+        }
+
+        /* CHECKOUT LAYOUT */
+        .checkout-container {
+            max-width: 1150px;
+            margin: 55px auto 80px;
+            padding: 0 25px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .checkout-left,
+        .order-summary {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(23,59,96,0.06);
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .section-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .section-heading h2 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 21px;
+            font-weight: 900;
+        }
+
+        .section-heading p {
+            font-size: 12px;
+            color: var(--gray);
+            margin-top: 3px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #DFE9F0;
+            border-radius: 11px;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: var(--navy);
+            background: #FBFDFF;
+            transition: .3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(130,189,229,0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 85px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #A8B6C3;
+        }
+
+        .form-divider {
+            border: none;
+            border-top: 1px solid #EDF2F6;
+            margin: 30px 0;
+        }
+
+        /* PAYMENT */
+        .payment-options {
+            display: grid;
+            gap: 13px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 17px;
+            border: 1px solid #DFE9F0;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .payment-option:hover {
+            border-color: var(--blue);
+            background: #FBFDFF;
+        }
+
+        .payment-option:has(input:checked) {
+            border: 2px solid var(--blue);
+            background: #F2F9FE;
+            padding: 16px;
+        }
+
+        .payment-option input {
+            accent-color: var(--navy);
+            width: 17px;
+            height: 17px;
+        }
+
+        .payment-symbol {
+            width: 42px;
+            height: 42px;
+            background: var(--light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .payment-details {
+            flex: 1;
+        }
+
+        .payment-details strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .payment-details small {
+            color: var(--gray);
+            font-size: 11px;
+        }
+
+        .payment-tag {
+            font-size: 10px;
+            font-weight: 800;
+            color: #4A91C1;
+            background: #EAF6FD;
+            padding: 5px 9px;
+            border-radius: 20px;
+        }
+
+        .payment-note {
+            margin-top: 15px;
+            padding: 13px;
+            background: #F6FAFD;
+            border-radius: 10px;
+            color: var(--gray);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* ORDER SUMMARY */
+        .order-summary {
+            position: sticky;
+            top: 110px;
+        }
+
+        .order-summary h2 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 23px;
+        }
+
+        .summary-items {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-height: 310px;
+            overflow-y: auto;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .item-image {
+            width: 55px;
+            height: 55px;
+            background: var(--light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            flex-shrink: 0;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-info strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .item-info small {
+            color: var(--gray);
+            font-size: 11px;
+        }
+
+        .item-price {
+            font-size: 13px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .summary-divider {
+            border: none;
+            border-top: 1px solid #EDF2F6;
+            margin: 22px 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        .summary-row strong {
+            color: var(--navy);
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 17px;
+            font-weight: 900;
+            margin-top: 20px;
+        }
+
+        .summary-total strong {
+            font-family: 'Nunito', sans-serif;
+            font-size: 23px;
+            color: var(--navy);
+        }
+
+        .place-order-btn {
+            width: 100%;
+            border: none;
+            background: var(--navy);
+            color: white;
+            padding: 16px;
+            border-radius: 30px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 27px;
+            transition: .3s;
+        }
+
+        .place-order-btn:hover {
+            background: #315F89;
+            transform: translateY(-2px);
+        }
+
+        .place-order-btn:disabled {
+            background: #A8B6C3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .secure-note {
+            text-align: center;
+            color: var(--gray);
+            font-size: 11px;
+            margin-top: 15px;
+        }
+
+        .back-cart {
+            display: block;
+            text-align: center;
+            margin-top: 17px;
+            color: #4A91C1;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 25px 10px;
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        .empty-message a {
+            display: inline-block;
+            margin-top: 12px;
+            color: #4A91C1;
+            font-weight: 800;
+        }
+
+        /* FOOTER - UPDATED LAYOUT */
+        footer {
+            width: 100%;
+            background: var(--navy);
+            padding: 55px 8% 25px;
+            color: white;
+        }
+
+        .footer-main {
+            width: 100%;
+            max-width: 1450px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(280px, 1.5fr) minmax(150px, .8fr) minmax(150px, .8fr);
+            column-gap: 70px;
+            row-gap: 35px;
+            padding-bottom: 42px;
+            align-items: start;
+        }
+
+        .footer-brand {
+            font-family: 'Nunito', sans-serif;
+            font-size: 29px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand span {
+            color: #91C8ED;
+        }
+
+        .footer-brand-column p {
+            color: #D2E5F3;
+            font-size: 13px;
+            line-height: 1.9;
+            max-width: 310px;
+        }
+
+        footer h3 {
+            font-size: 15px;
+            margin-bottom: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #D2E5F3;
+            font-size: 13px;
+            transition: .3s;
+            width: fit-content;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            width: 100%;
+            max-width: 1450px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 22px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            column-gap: 20px;
+            color: #D2E5F3;
+            font-size: 12px;
+        }
+
+        .footer-bottom span:first-child {
+            text-align: left;
+        }
+
+        .footer-bottom span:last-child {
+            text-align: right;
+        }
+
+        .demo-version {
+            color: #91C8ED;
+            font-weight: 800;
+            letter-spacing: .5px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        @media(max-width:950px) {
+            header {
+                padding: 15px 4%;
+            }
+
+            nav {
+                gap: 14px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .checkout-container {
+                gap: 20px;
+            }
+        }
+
+        @media(max-width:750px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                margin-top: 30px;
+            }
+
+            .order-summary {
+                position: static;
+                grid-row: 1;
+            }
+
+            .page-hero h1 {
+                font-size: 34px;
+            }
+        }
+
+        @media(max-width:650px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .checkout-left,
+            .order-summary {
+                padding: 22px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                column-gap: 30px;
+                row-gap: 30px;
+            }
+
+            .footer-brand-column {
+                grid-column: 1 / -1;
+            }
+
+            .footer-bottom {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                row-gap: 12px;
+                text-align: center;
+            }
+
+            .footer-bottom span:first-child,
+            .footer-bottom span:last-child {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="Home.html" class="logo">
+            <img src="images/logo.png" alt="Pet Care Logo">
+            Pet <span>Care</span>
+        </a>
+
+        <nav>
+            <a href="Home.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="features.html">Features</a>
+            <a href="demo.html">Demo</a>
+            <a href="contact.html" class="nav-cta">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <h1>Checkout 🐾</h1>
+        <p>Just one more step to make your pet happy!</p>
+
+        <div class="breadcrumb">
+            <a href="Home.html">Home</a> &nbsp; / &nbsp;
+            <a href="pet-shop.html">Pet Shop</a> &nbsp; / &nbsp;
+            <a href="cart.html">Cart</a> &nbsp; / &nbsp;
+            <span>Checkout</span>
+        </div>
+    </section>
+
+    <main class="checkout-container">
+
+        <section class="checkout-left">
+
+            <div class="section-heading">
+                <div class="section-icon">📍</div>
+                <div>
+                    <h2>Delivery Information</h2>
+                    <p>Where should we deliver your order?</p>
+                </div>
+            </div>
+
+            <form id="checkoutForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" placeholder="e.g. 3XXXXXXX" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" placeholder="example@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="area">Area *</label>
+                        <input type="text" id="area" placeholder="Enter your area" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="address">Full Address *</label>
+                        <textarea id="address" placeholder="Building number, road, block..." required></textarea>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="notes">Delivery Notes (Optional)</label>
+                        <textarea id="notes" placeholder="Any special instructions for delivery?"></textarea>
+                    </div>
+
+                </div>
+
+                <hr class="form-divider">
+
+                <div class="section-heading">
+                    <div class="section-icon">💳</div>
+                    <div>
+                        <h2>Payment Method</h2>
+                        <p>Choose your preferred payment method</p>
+                    </div>
+                </div>
+
+                <div class="payment-options">
+
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="Cash on Delivery" checked>
+                        <div class="payment-symbol">💵</div>
+                        <div class="payment-details">
+                            <strong>Cash on Delivery</strong>
+                            <small>Pay when your order arrives</small>
+                        </div>
+                        <span class="payment-tag">Popular</span>
+                    </label>
+
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="BenefitPay">
+                        <div class="payment-symbol">📱</div>
+                        <div class="payment-details">
+                            <strong>BenefitPay</strong>
+                            <small>Pay using BenefitPay</small>
+                        </div>
+                    </label>
+
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="Credit / Debit Card">
+                        <div class="payment-symbol">💳</div>
+                        <div class="payment-details">
+                            <strong>Credit / Debit Card</strong>
+                            <small>Visa and Mastercard</small>
+                        </div>
+                    </label>
+
+                </div>
+
+                <div class="payment-note">
+                    <strong>Note:</strong> This is a project demonstration. Online payments are not processed, and no real payment information is collected.
+                </div>
+
+            </form>
+        </section>
+
+        <aside class="order-summary">
+
+            <h2>Order Summary</h2>
+
+            <div class="summary-items" id="summaryItems"></div>
+
+            <hr class="summary-divider">
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <strong id="subtotal">0.000 BHD</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Delivery Fee</span>
+                <strong id="deliveryFee">1.000 BHD</strong>
+            </div>
+
+            <hr class="summary-divider">
+
+            <div class="summary-total">
+                <span>Total</span>
+                <strong id="total">0.000 BHD</strong>
+            </div>
+
+            <button type="submit" form="checkoutForm" class="place-order-btn" id="placeOrderBtn">
+                Place Order →
+            </button>
+
+            <p class="secure-note">🔒 Your information is used for this demo order only.</p>
+
+            <a href="cart.html" class="back-cart">← Back to Cart</a>
+
+        </aside>
+
+    </main>
+
+    <footer>
+        <div class="footer-main">
+
+            <div class="footer-brand-column">
+                <div class="footer-brand">
+                    Pet <span>Care</span> 🐾
+                </div>
+
+                <p>
+                    Happy Pets, Happy Life!
+                    Bringing essential pet care services
+                    together in one convenient platform.
+                </p>
+            </div>
+
+            <div>
+                <h3>Explore</h3>
+
+                <div class="footer-links">
+                    <a href="Home.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="features.html">Features</a>
+                    <a href="demo.html">Demo</a>
+                </div>
+            </div>
+
+            <div>
+                <h3>Get in Touch</h3>
+
+                <div class="footer-links">
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 Pet Care Application. All Rights Reserved.</span>
+            <span class="demo-version">Demo Version</span>
+            <span>Made with 💙 for pets and their owners.</span>
+        </div>
+    </footer>
+
+    <script>
+        const DELIVERY_FEE = 1.000;
+
+        let cart = JSON.parse(localStorage.getItem("petCareCart") || "[]");
+
+        const summaryItems = document.getElementById("summaryItems");
+        const subtotalElement = document.getElementById("subtotal");
+        const totalElement = document.getElementById("total");
+        const placeOrderBtn = document.getElementById("placeOrderBtn");
+
+        function formatPrice(price) {
+            return Number(price).toFixed(3) + " BHD";
+        }
+
+        function getSubtotal() {
+            return cart.reduce((sum, item) => {
+                return sum + (Number(item.price) * Number(item.quantity));
+            }, 0);
+        }
+
+        function renderSummary() {
+            if (cart.length === 0) {
+                summaryItems.innerHTML = `
+                    <div class="empty-message">
+                        <div style="font-size:35px; margin-bottom:10px;">🛒</div>
+                        Your cart is empty.
+                        <br>
+                        <a href="pet-shop.html">Continue Shopping</a>
+                    </div>
+                `;
+
+                subtotalElement.textContent = formatPrice(0);
+                totalElement.textContent = formatPrice(0);
+                placeOrderBtn.disabled = true;
+                return;
+            }
+
+            summaryItems.innerHTML = cart.map(item => `
+                <div class="summary-item">
+                    <div class="item-image">${item.emoji || "🐾"}</div>
+
+                    <div class="item-info">
+                        <strong>${escapeHTML(item.name)}</strong>
+                        <small>Quantity: ${Number(item.quantity)}</small>
+                    </div>
+
+                    <div class="item-price">
+                        ${formatPrice(Number(item.price) * Number(item.quantity))}
+                    </div>
+                </div>
+            `).join("");
+
+            const subtotal = getSubtotal();
+            const total = subtotal + DELIVERY_FEE;
+
+            subtotalElement.textContent = formatPrice(subtotal);
+            totalElement.textContent = formatPrice(total);
+
+            placeOrderBtn.disabled = false;
+        }
+
+        function escapeHTML(value) {
+            return String(value).replace(/[&<>"']/g, character => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+            })[character]);
+        }
+
+        document.getElementById("checkoutForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add products before checkout.");
+                return;
+            }
+
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+            const order = {
+                orderId: "PC" + Date.now(),
+                date: new Date().toLocaleString(),
+                customer: {
+                    name: document.getElementById("fullName").value.trim(),
+                    phone: document.getElementById("phone").value.trim(),
+                    email: document.getElementById("email").value.trim(),
+                    area: document.getElementById("area").value.trim(),
+                    address: document.getElementById("address").value.trim(),
+                    notes: document.getElementById("notes").value.trim()
+                },
+                paymentMethod: paymentMethod,
+                items: cart,
+                subtotal: getSubtotal(),
+                deliveryFee: DELIVERY_FEE,
+                total: getSubtotal() + DELIVERY_FEE,
+                status: "Order Placed"
+            };
+
+            let orders = JSON.parse(localStorage.getItem("petCareOrders") || "[]");
+
+            orders.push(order);
+
+            localStorage.setItem("petCareOrders", JSON.stringify(orders));
+
+            localStorage.removeItem("petCareCart");
+
+            alert("Your order has been placed successfully! 🐾");
+
+            window.location.href = "orders.html";
+        });
+
+        renderSummary();
+    </script>
+
+</body>
+</html>
